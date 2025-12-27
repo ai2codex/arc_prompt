@@ -1,15 +1,15 @@
 {
-  "name": "boilerplate-nextjs-shadcn-with-vibe-coding",
+  "name": "arc_prompt",
   "version": "0.1.0",
   "private": true,
-  "description": "Boilerplate for Next.js, Shadcn, and Vibe Coding",
-  "homepage": "https://github.com/ai2coding/boilerplate-nextjs-shadcn-with-vibe-coding",
+  "description": "Arc Prompt is a multi-model prompt management system.",
+  "homepage": "https://github.com/ai2codex/arc_prompt",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ai2coding/boilerplate-nextjs-shadcn-with-vibe-coding"
+    "url": "https://github.com/ai2codex/arc_prompt"
   },
   "license": "MIT",
-  "author": "Q&Q Studio",
+  "author": "Arc Prompt",
   "scripts": {
     "build": "next build",
     "db:generate": "drizzle-kit generate --config drizzle.config.ts",
