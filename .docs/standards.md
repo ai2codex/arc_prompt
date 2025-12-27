@@ -69,7 +69,8 @@ handleUnauthorizedResult(result);
 
 ## 外部 HTTP 配置
 
-- 统一复用 `lib/http.ts` 里的默认配置。
+- 服务端统一复用 `lib/http.ts` 里的默认配置。
+- 客户端需要在 401 时同步清理登录态的请求，使用 `lib/http-client.ts` 的 `httpClient`。
 
 ```ts
 import { http } from '@/lib/http';

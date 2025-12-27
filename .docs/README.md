@@ -14,6 +14,7 @@
 
 - 默认使用 RSC，写操作走 server actions。
 - 外部 HTTP 调用使用 `lib/http.ts` 的 `http` 实例。
+- 客户端登录态通过 `AuthHydration` 注入 `features/auth/user-store.ts`。
 - Postgres + Drizzle，连接读取 `DATABASE_URI`。
 - 表和字段使用 snake_case。
 - Zod 负责边界数据校验，Zustand 负责客户端状态。

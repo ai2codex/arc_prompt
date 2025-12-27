@@ -10,7 +10,11 @@
 - API 入口：`app/api/auth/[...all]/route.ts`
 - 认证配置：`lib/auth.ts`
 - 客户端封装：`features/auth/client.ts`
+- 客户端用户态：`features/auth/user-store.ts`
+- 会话映射：`features/auth/session-user.ts`
+- 类型定义：`features/auth/types.ts`
 - 入口 UI：`features/auth/components/one-tap-gate.tsx`
+- 登录态注入：`features/auth/components/auth-hydration.tsx`
 - 未登录弹窗：`features/auth/components/auth-required-modal.tsx`
 
 ## 环境变量
@@ -35,15 +39,46 @@ await startOneTap();
 
 默认入口组件 `features/auth/components/one-tap-gate.tsx` 会在页面加载时自动唤起，并提供重试按钮。
 
+One Tap 完成后会调用 `syncSessionUser`（内部是 `authClient.getSession`，会发起网络请求）同步用户态。
+
 ## 服务端会话
 
 - `features/auth/server.ts` 提供 `getSessionUser` 与 `requireSessionUser`。
 - `requireSessionUser` 用于 server action 鉴权，不通过则抛出 `UnauthorizedError`。
 
+## 客户端登录态
+
+- RSC 首次渲染使用 `getSessionUser` 获取用户态，并通过 `AuthHydration` 注入到客户端 store。
+- 客户端统一使用 `features/auth/user-store.ts` 的 `useAuthUserStore` 读取用户态。
+- 登录态映射通过 `features/auth/session-user.ts` 的 `toSessionUser` 统一处理。
+
+```ts
+import { useAuthUserStore } from '@/features/auth/client';
+
+const user = useAuthUserStore((state) => state.user);
+```
+
+## 登出
+
+客户端调用：
+
+```ts
+import { logout } from '@/features/auth/client';
+
+await logout({ redirectTo: '/' });
+```
+
 ## 未登录提示
 
 - `AuthRequiredModal` 默认挂载在根布局中。
 - 客户端可通过 `features/auth/store.ts` 打开/关闭弹窗。
+
+server action 返回 `unauthorized` 时统一走 `lib/action-client.ts` 处理，并清空客户端用户态。
+
+## 客户端 API 请求的 401 处理
+
+- 使用 `lib/http-client.ts` 导出的 `httpClient` 发起客户端请求。
+- 返回 401 时会自动清空客户端用户态。
 
 ## 数据库表
 

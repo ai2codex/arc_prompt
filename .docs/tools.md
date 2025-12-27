@@ -2,7 +2,8 @@
 
 ## ky（HTTP）
 
-- 使用 `lib/http.ts` 导出的 `http` 实例。
+- 服务端使用 `lib/http.ts` 导出的 `http` 实例。
+- 客户端需要自动清理登录态时使用 `lib/http-client.ts` 的 `httpClient`。
 - 用在外部 API 或跨服务调用；内部数据优先走 Drizzle。
 
 ```ts
@@ -26,6 +27,16 @@ export async function createItem(title: string) {
   await http.post('https://api.example.com/items', {
     json: { title },
   });
+}
+```
+
+客户端示例：
+
+```ts
+import { httpClient } from '@/lib/http-client';
+
+export async function fetchProfile() {
+  return httpClient.get('/api/profile').json();
 }
 ```
 
