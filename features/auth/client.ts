@@ -7,7 +7,16 @@ const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
 const authClient = googleClientId
   ? createAuthClient({
-      plugins: [oneTapClient({ clientId: googleClientId })],
+      plugins: [
+        oneTapClient({
+          cancelOnTapOutside: false,
+          clientId: googleClientId,
+          promptOptions: {
+            baseDelay: 1000,
+            maxAttempts: 10,
+          },
+        }),
+      ],
     })
   : null;
 

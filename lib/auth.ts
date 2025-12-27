@@ -10,6 +10,7 @@ import { env, isProd } from '@/lib/env';
 const baseURL = env.BETTER_AUTH_URL ?? undefined;
 const betterAuthSecret = env.BETTER_AUTH_SECRET;
 const googleClientId = env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+const googleClientSecret = env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET;
 const cookiePrefix = env.BETTER_AUTH_COOKIE_PREFIX;
 const cookieDomain = isProd ? (env.BETTER_AUTH_COOKIE_DOMAIN ?? undefined) : undefined;
 
@@ -21,11 +22,25 @@ if (!googleClientId) {
   throw new Error('NEXT_PUBLIC_GOOGLE_CLIENT_ID is required for one-tap login');
 }
 
+if (!googleClientSecret) {
+  throw new Error('NEXT_PUBLIC_GOOGLE_CLIENT_SECRET is required for one-tap login');
+}
+
 export const auth = betterAuth({
   baseURL,
   secret: betterAuthSecret,
   database: drizzleAdapter(db, { provider: 'pg', schema }),
   plugins: [oneTap({ clientId: googleClientId }), nextCookies()],
+  socialProviders: {
+    google: {
+      clientId: googleClientId,
+      clientSecret: googleClientSecret,
+    },
+  },
+  // TODO: Add trusted origins (do not fixed this for now)
+  // trustedOrigins(request) {
+  //   return [];
+  // },
   advanced: {
     cookiePrefix,
     crossSubDomainCookies: {

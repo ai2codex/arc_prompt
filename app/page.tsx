@@ -1,9 +1,5 @@
-import { OneTapGate } from '@/features/auth/components/one-tap-gate';
+import PromptListPage from '@/features/prompts/components/prompt-list-page';
 
 export default function Page() {
-  return (
-    <div>
-      <OneTapGate />
-    </div>
-  );
+  return <PromptListPage />;
 }

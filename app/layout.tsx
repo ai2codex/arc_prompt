@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google';
+import { Toaster } from '@/components/ui/sonner';
+import { AuthRequiredModal } from '@/features/auth/components/auth-required-modal';
 import './globals.css';
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-sans' });
@@ -26,7 +28,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={jetBrainsMono.variable}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+        <Toaster />
+        <AuthRequiredModal />
+      </body>
     </html>
   );
 }

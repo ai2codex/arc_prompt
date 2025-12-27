@@ -10,6 +10,7 @@ export const envSchema = z.object({
   BETTER_AUTH_COOKIE_DOMAIN: z.string().optional(),
   BETTER_AUTH_COOKIE_PREFIX: z.string().optional().default('better-auth'),
   NEXT_PUBLIC_GOOGLE_CLIENT_ID: z.string().min(1).optional(),
+  NEXT_PUBLIC_GOOGLE_CLIENT_SECRET: z.string().min(1).optional(),
 });
 
 /**
@@ -22,6 +23,7 @@ export const env = envSchema.parse({
   BETTER_AUTH_COOKIE_DOMAIN: process.env.BETTER_AUTH_COOKIE_DOMAIN,
   BETTER_AUTH_COOKIE_PREFIX: process.env.BETTER_AUTH_COOKIE_PREFIX,
   NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+  NEXT_PUBLIC_GOOGLE_CLIENT_SECRET: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
 });
 
 /**
