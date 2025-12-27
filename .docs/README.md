@@ -17,4 +17,5 @@
 - Postgres + Drizzle，连接读取 `DATABASE_URI`。
 - 表和字段使用 snake_case。
 - Zod 负责边界数据校验，Zustand 负责客户端状态。
+- server action 统一使用 `lib/action.ts` 返回 `ActionResult`。
 - 认证仅支持 Google One Tap（better-auth）。

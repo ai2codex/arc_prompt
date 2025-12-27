@@ -11,6 +11,7 @@
 - 认证配置：`lib/auth.ts`
 - 客户端封装：`features/auth/client.ts`
 - 入口 UI：`features/auth/components/one-tap-gate.tsx`
+- 未登录弹窗：`features/auth/components/auth-required-modal.tsx`
 
 ## 环境变量
 
@@ -18,7 +19,8 @@
 - `BETTER_AUTH_URL`：站点基准 URL（建议生产环境必填）。
 - `BETTER_AUTH_COOKIE_DOMAIN`：跨子域 Cookie 域名（可选，生产环境按需）。
 - `BETTER_AUTH_COOKIE_PREFIX`：Cookie 前缀（可选，默认 `better-auth`）。
-- `NEXT_PUBLIC_GOOGLE_CLIENT_ID`：Google One Tap Client ID（必填）。
+- `NEXT_PUBLIC_GOOGLE_CLIENT_ID`：Google Client ID（必填）。
+- `NEXT_PUBLIC_GOOGLE_CLIENT_SECRET`：Google Client Secret（必填）。
 - `DATABASE_URI`：数据库连接字符串（必填）。
 
 ## 客户端唤起
@@ -32,6 +34,16 @@ await startOneTap();
 ```
 
 默认入口组件 `features/auth/components/one-tap-gate.tsx` 会在页面加载时自动唤起，并提供重试按钮。
+
+## 服务端会话
+
+- `features/auth/server.ts` 提供 `getSessionUser` 与 `requireSessionUser`。
+- `requireSessionUser` 用于 server action 鉴权，不通过则抛出 `UnauthorizedError`。
+
+## 未登录提示
+
+- `AuthRequiredModal` 默认挂载在根布局中。
+- 客户端可通过 `features/auth/store.ts` 打开/关闭弹窗。
 
 ## 数据库表
 

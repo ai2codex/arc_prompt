@@ -45,6 +45,7 @@ pnpm dev
 - 写操作只走 server actions
 - 外部 HTTP 调用统一用 `lib/http.ts` 的 `http`
 - 边界输入用 Zod 校验，客户端状态用 Zustand
+- server action 统一用 `lib/action.ts` 返回 `ActionResult`
 - 表和字段统一 snake_case
 
 ## 认证（Google One Tap）
@@ -52,7 +53,9 @@ pnpm dev
 - 入口路由：`app/api/auth/[...all]/route.ts`
 - 服务端配置：`lib/auth.ts`
 - 客户端唤起：`features/auth/client.ts`
+- 服务端会话：`features/auth/server.ts`
 - 默认入口 UI：`features/auth/components/one-tap-gate.tsx`
+- 未登录弹窗：`features/auth/components/auth-required-modal.tsx`
 
 在客户端组件中手动唤起：
 
@@ -78,7 +81,8 @@ await startOneTap();
 
 - `DATABASE_URI`：Postgres 连接串
 - `BETTER_AUTH_SECRET`：better-auth 签名密钥
-- `NEXT_PUBLIC_GOOGLE_CLIENT_ID`：Google One Tap Client ID
+- `NEXT_PUBLIC_GOOGLE_CLIENT_ID`：Google Client ID
+- `NEXT_PUBLIC_GOOGLE_CLIENT_SECRET`：Google Client Secret
 
 可选：
 
