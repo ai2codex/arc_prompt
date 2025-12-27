@@ -1,0 +1,20 @@
+{
+  "schema": "https://json.schemastore.org/prettierrc",
+  "plugins": [
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-packagejson",
+    "prettier-plugin-tailwindcss"
+  ],
+  "printWidth": 100,
+  "proseWrap": "never",
+  "singleQuote": true,
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "proseWrap": "preserve"
+      }
+    }
+  ]
+}

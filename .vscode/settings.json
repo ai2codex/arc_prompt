@@ -1,0 +1,20 @@
+{
+  // 使用项目指定的 TypeScript 版本
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // 保存文件时，使用 Prettier 自动格式化代码（需要安装 esbenp.prettier-vscode 插件）
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // 保存文件时，使用 Stylelint 自动格式化样式代码（需要安装 stylelint.vscode-stylelint 插件）
+  "stylelint.validate": ["css", "scss", "less"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // CSS 文件使用 Tailwind 模式（需要安装 bradlc.vscode-tailwindcss 插件）
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules
+dist
+build
+logs
+run
+.next
+pnpm-lock.yaml
