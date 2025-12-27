@@ -7,6 +7,7 @@
 - [架构](./architecture.md)
 - [规范](./standards.md)
 - [数据库](./database.md)
+- [认证](./auth.md)
 - [工具](./tools.md)
 
 ## 快速约定
@@ -16,3 +17,4 @@
 - Postgres + Drizzle，连接读取 `DATABASE_URI`。
 - 表和字段使用 snake_case。
 - Zod 负责边界数据校验，Zustand 负责客户端状态。
+- 认证仅支持 Google One Tap（better-auth）。

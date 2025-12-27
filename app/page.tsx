@@ -1,7 +1,9 @@
+import { OneTapGate } from '@/features/auth/components/one-tap-gate';
+
 export default function Page() {
   return (
     <div>
-      <h1>Hello World</h1>
+      <OneTapGate />
     </div>
   );
 }

@@ -11,6 +11,13 @@
 - 读：RSC -> 数据库（Drizzle）。
 - 写：Client -> server action -> 数据库（Drizzle）。
 - 外部 API：server action -> `http`（ky）。
+- 认证：Client -> One Tap -> `/api/auth/*` -> better-auth -> 数据库（Drizzle）。
+
+## 认证
+
+- 使用 better-auth + Google One Tap，项目只保留一键登录能力。
+- API 入口由 `app/api/auth/[...all]/route.ts` 统一接入。
+- 认证配置集中在 `lib/auth.ts`。
 
 ## 目录职责（高层）
 

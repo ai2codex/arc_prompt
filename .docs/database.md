@@ -13,6 +13,7 @@
 - `db/migrations/`：迁移文件输出目录。
 - `lib/env.ts`：环境变量校验（Zod）。
 - `lib/db.ts`：数据库连接与 Drizzle 实例。
+- `db/schema/auth.ts`：better-auth 认证表（user/session/account/verification）。
 
 ## 迁移流程
 
@@ -27,6 +28,7 @@
 - 表名与字段名一律 snake_case。
 - 生产环境只允许使用迁移，不使用 `db:push`。
 - Zod 校验放在业务模块的 `features/<name>/schemas.ts`，不进 `db/schema`。
+- 认证相关表字段名需与 `lib/auth.ts` 的字段映射保持一致。
 
 ## 示例：snake_case 表定义
 

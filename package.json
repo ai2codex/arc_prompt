@@ -13,10 +13,12 @@
   "scripts": {
     "build": "next build",
     "db:generate": "drizzle-kit generate --config drizzle.config.ts",
+    "db:generate:auth": "pnpm dlx @better-auth/cli generate --config ./lib/auth.ts --output ./db/schema/auth.ts",
     "db:migrate": "drizzle-kit migrate --config drizzle.config.ts",
     "db:studio": "drizzle-kit studio --config drizzle.config.ts",
     "dev": "next dev",
     "fmt": "prettier --write .",
+    "gen:env": "cp .env.example .env",
     "lint": "eslint",
     "start": "next start"
   },
@@ -24,6 +26,7 @@
     "@base-ui/react": "^1.0.0",
     "@hugeicons/core-free-icons": "^3.1.1",
     "@hugeicons/react": "^1.1.4",
+    "better-auth": "^1.4.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
