@@ -2,7 +2,7 @@
 
 import { toast } from 'sonner';
 
-import { openAuthModal } from '@/features/auth/store';
+import { clearAuthUser, openAuthModal } from '@/features/auth/client';
 import type { ActionError, ActionResult } from '@/lib/action';
 import { APP_ERROR_CODES } from '@/lib/errors';
 
@@ -17,6 +17,7 @@ export function handleUnauthorizedError(error: ActionError, options?: Unauthoriz
   if (error.code !== APP_ERROR_CODES.UNAUTHORIZED) {
     return false;
   }
+  clearAuthUser();
   const message = error.message || DEFAULT_MESSAGE;
   if (options?.showToast !== false) {
     toast.error(message);
