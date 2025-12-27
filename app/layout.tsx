@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { getSessionUser } from '@/features/auth';
 import { AuthHydration } from '@/features/auth/components/auth-hydration';
 import { AuthRequiredModal } from '@/features/auth/components/auth-required-modal';
+import { Analytics } from '@vercel/analytics/next';
 import { Geist, Geist_Mono, JetBrains_Mono } from 'next/font/google';
 
 const jetBrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-sans' });
@@ -39,6 +40,7 @@ export default async function RootLayout({
         <AuthHydration user={user} />
         <Toaster />
         <AuthRequiredModal />
+        <Analytics />
       </body>
     </html>
   );
